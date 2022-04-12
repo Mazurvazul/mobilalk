@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "343016663396",
+    "project_id": "kurrencynepunt",
+    "storage_bucket": "kurrencynepunt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:343016663396:android:10dda3be305c2640423271",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "343016663396-np8ti6p1hhh3juccdvp4vr1snnidliuv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "badf01b90e812a07d8985c511ec9a69e90127957"
+          }
+        },
+        {
+          "client_id": "343016663396-td1etm9j0lrbvtk6bdpsjpd96a5rmdu6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDojTl9tQfGyfkvAyzTYl1PbQDi-ef5IFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "343016663396-td1etm9j0lrbvtk6bdpsjpd96a5rmdu6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
