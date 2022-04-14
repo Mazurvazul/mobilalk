@@ -2,6 +2,9 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,54 +41,16 @@ public class MainActivity extends AppCompatActivity {
     MyAdapter myAdapter;
     ArrayList<Valuta> list;
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://kurrencynepunt-default-rtdb.europe-west1.firebasedatabase.app/.json";
-        //"https://www.metaweather.com/api/location/search/?query=london";
-
-//        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url,null, new Response.Listener<JSONArray>() {
-//            @Override
-//            public void onResponse(JSONArray response) {
-//                Toast.makeText(MainActivity.this,response.toString(),Toast.LENGTH_SHORT).show();
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(MainActivity.this,"Hiba",Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        queue.add(request);
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        // Display the first 500 characters of the response string.
-//                        Toast.makeText(MainActivity.this,response.toString(),Toast.LENGTH_SHORT).show();
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(MainActivity.this,"Hiba",Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//// Add the request to the RequestQueue.
-////        queue.add(stringRequest);
-//        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                Toast.makeText(MainActivity.this,response.toString(),Toast.LENGTH_SHORT).show();
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(MainActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        queue.add(request);
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -119,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onCustomToggleClick(View view){
+        Toast.makeText(this,"SZIA",Toast.LENGTH_SHORT).show();
+
+    }
 
 
 }
