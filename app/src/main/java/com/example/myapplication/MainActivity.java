@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +55,30 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRecyclerView();
+    }
+
+    public void onCustomToggleClick(View view){
+        Toast.makeText(this,"SZIA",Toast.LENGTH_SHORT).show();
+
+    }
+
+
+
+    public void onLoginClick(MenuItem item) {
+        setContentView(R.layout.activity_login);
+
+    }
+    public void onCurrencyClick(MenuItem item) {
+        setContentView(R.layout.activity_main);
+        setRecyclerView();
+    }
+    public void onRegisterClick(View view){
+        setContentView(R.layout.activity_register);
+    }
+
+
+    public void setRecyclerView(){
         recyclerView=findViewById(R.id.ValutaList);
         database= FirebaseDatabase.getInstance("https://kurrencynepunt-default-rtdb.europe-west1.firebasedatabase.app").getReference("Currencys");
         recyclerView.setHasFixedSize(true);
@@ -77,17 +102,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
     }
-
-    public void onCustomToggleClick(View view){
-        Toast.makeText(this,"SZIA",Toast.LENGTH_SHORT).show();
-
-    }
-
-
 }

@@ -2,8 +2,16 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Login"
-        app:showAsAction="ifRoom"/>
+    <item
+        android:icon="@drawable/common_full_open_on_phone"
+        android:onClick="onLoginClick"
+        android:title="@string/login"
+        app:showAsAction="ifRoom" />
+    <item
+        android:icon="@drawable/ic_baseline_euro_24"
+        android:onClick="onCurrencyClick"
+        android:title="@string/currencys"
+        app:showAsAction="ifRoom" />
 
 
 </menu>
