@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -46,13 +47,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
-
         return true;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRecyclerView();
@@ -63,21 +62,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
     public void onLoginClick(MenuItem item) {
-        setContentView(R.layout.activity_login);
-
+        Intent intent = new Intent(this,RegisterActivity.class);
+        startActivity(intent);
     }
     public void onCurrencyClick(MenuItem item) {
-        setContentView(R.layout.activity_main);
-        setRecyclerView();
-    }
-    public void onRegisterClick(View view){
-        setContentView(R.layout.activity_register);
+        // Ez lehet üres
     }
 
-
+    //Fire Base dolgok
     public void setRecyclerView(){
         recyclerView=findViewById(R.id.ValutaList);
         database= FirebaseDatabase.getInstance("https://kurrencynepunt-default-rtdb.europe-west1.firebasedatabase.app").getReference("Currencys");
