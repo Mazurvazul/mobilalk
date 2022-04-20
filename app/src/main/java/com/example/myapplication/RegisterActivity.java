@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final String LOG_TAG = RegisterActivity.class.getName();
+    private static final int SECRET_KEY =42069;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogle;
     EditText emailEditText;
@@ -45,8 +46,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.notuser_menu, menu);
         return true;
     }
     public void onLoginClick(MenuItem item) {
@@ -82,9 +84,10 @@ public class RegisterActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Toast.makeText(RegisterActivity.this,"Login", Toast.LENGTH_SHORT).show();
                     Log.d(LOG_TAG,"Successful login");
-                    //intent somewhere
+                    //TODO USERINTERFACE INTENT
                     Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
                     startActivity(intent);
+                    finish();
 
                 }else{
                     Log.d(LOG_TAG,"Hiba" + task.getException().getMessage());
@@ -128,15 +131,28 @@ public class RegisterActivity extends AppCompatActivity {
         passwordEditTextLogin =findViewById(R.id.editTextPasswordLogin);
         String emailLogin = emailEditTextLogin.getText().toString();
         String passwordLogin = passwordEditTextLogin.getText().toString();
+
+        if(emailEditTextLogin.length()==0){
+            emailEditTextLogin.setError("Required!");
+            return;
+        }else if(passwordEditTextLogin.length()==0){
+            passwordEditTextLogin.setError("Required!");
+            return;
+        }else if(!Patterns.EMAIL_ADDRESS.matcher(emailLogin).matches()) {
+            emailEditTextLogin.setError("Enter valid email!");
+            return;
+        }
+
         mAuth.signInWithEmailAndPassword(emailLogin,passwordLogin).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(RegisterActivity.this,"Login", Toast.LENGTH_SHORT).show();
                     Log.d(LOG_TAG,"Successful login");
-                    //intent somewhere
+                    //TODO USERINTERFACE INTENT
                     Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
                     startActivity(intent);
+                    finish();
 
                 }else{
                     Log.d(LOG_TAG,"Hiba" + task.getException().getMessage());
@@ -184,6 +200,7 @@ public class RegisterActivity extends AppCompatActivity {
                     //intent somewhere
                     Intent intent = new Intent(RegisterActivity.this,RegisterActivity.class);
                     startActivity(intent);
+                    finish();
 
                 }else{
                     Log.d(LOG_TAG,"Hiba" + task.getException().getMessage());
