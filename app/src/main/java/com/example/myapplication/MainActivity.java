@@ -1,6 +1,12 @@
 package com.example.myapplication;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.IntentSender;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,7 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +36,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.auth.api.Auth;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,11 +72,13 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         user = FirebaseAuth.getInstance().getCurrentUser();
         if(user!=null){
-            Toast.makeText(this,"Welcome! :D",Toast.LENGTH_SHORT).show();
             setRecyclerView();
         }else{
             setRecyclerView2();
         }
+
+
+
     }
 
     @Override
@@ -73,22 +86,70 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         if(user!=null){
             inflater.inflate(R.menu.main, menu);
+            database= FirebaseDatabase.getInstance("https://kurrencynepunt-default-rtdb.europe-west1.firebasedatabase.app").getReference("Currencys");
+            database.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this,"notifyMe")
+                            .setContentTitle("DataBase Change")
+                            .setContentText("Hey folks, the forint again change. Check now!")
+                            .setContentIntent(pendingIntent)
+                            .setSmallIcon(R.drawable.ic_baseline_euro_24)
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
+                    managerCompat.notify(1,builder.build());
+                    recreate();
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }else{
             inflater.inflate(R.menu.notuser_menu, menu);
         }
         return true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("notifyMe","notifyMe",NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
 
     }
 
+
+
     //menu
     public void onCustomToggleClick(View view){
-        Toast.makeText(this,"SZIA",Toast.LENGTH_SHORT).show();
+       //TODO csak akart lenni ilyen feture
 
     }
 
@@ -108,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
     public void onProfileClick(MenuItem item) {
         Intent intent = new Intent(this,ProfileActivity.class);
         startActivity(intent);
-        finish();
+
     }
 
     //Fire Base dolgok
@@ -127,8 +188,10 @@ public class MainActivity extends AppCompatActivity {
                     Valuta valuta = dataSnapshot.getValue(Valuta.class);
                     list.add(valuta);
 
+
                 }
                 myAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -162,5 +225,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+
 
 }

@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#474646">
+    android:background="@color/GrayBG">
 
     <EditText
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:id="@+id/emailEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,6 +24,8 @@
         app:layout_constraintVertical_bias="0.165" />
 
     <EditText
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:id="@+id/passwordEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,6 +41,8 @@
         app:layout_constraintVertical_bias="0.088" />
 
     <EditText
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:id="@+id/passwordAgainEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
