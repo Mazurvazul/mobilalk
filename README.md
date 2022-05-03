@@ -1,0 +1,15 @@
+Egy kis bemutató hogyan működik az alkalmazás.  
+--  
+- Az app kezdő képernyője. Jelenleg nem vagyunk bejelentkezve igy csak 3 valuta látható De ha a felső menü sávon rányomunk a fehér telefon ikonra akkor a bejelentkezés ablak jelenik meg.  
+--  
+- Két féle módon lehet bejelentkezni. A sárga "G"-re kattintva a google fiókos bejelentkezés lehetséges. Ha nem akarunk googlet használni akkor elsőnek csinálnunk kell egy új fiokot (register gomb a regisztrációs ablakhoz visz) és majd amivel regisztráltunk azzal itt bejelentkezni.  
+--  
+- Ha sikerült belépnünk akkor megjelenik igen sok valuta . Plusz a menu sávon két új funkció is  
+ - A fehér telefon ikon most már a KIJELENTKEZÉS lett.  
+ - A kis ember ikon az a profilhoz visz minket ahol képesek vagyunk megadni nevünket és születés napunkat.  
+ - Az euro ikon vissza visz minket a valutákhoz.  
+ - Ha az adatbázis frissul akkor egy alarm értesítést is kapunk.  
+--  
+- A profil képernyő. Két gomb van a save és a delete. Save gombbal képesek vagyunk átírni a dolgokat a delet gombbal meg a fiókunkat tudjuk véglegesen törölni. U.I: előszőr nem jelenek meg az adataink azt nekünk kell bevenni majd a savel menteni de később ha újra vissza jövünk ide akkor már rendes adatainkal lesz kitöltve a mezők.  
+--
+- Az alkalmazásba a sárga csillagok semmit nem csinálnak. D:  
